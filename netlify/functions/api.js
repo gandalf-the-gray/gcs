@@ -38,9 +38,10 @@ exports.handler = async function(event, __) {
             isBase64Encoded : true,
         }
     } else {
-        return {
-            statusCoe: 200,
-            body: JSON.stringify({event}),
+        if(pathSplits[0] === "queries") {
+            
+        } else {
+
         }
     }
 }
