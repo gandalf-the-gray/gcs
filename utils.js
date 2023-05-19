@@ -4,8 +4,8 @@ const fs = require("fs/promises");
 async function log(message, category = "error") {
     try {
         const date = new Date().toLocaleString("in-EN", { timeZone: "Asia/Kolkata"});;
-        const logMessage = `${category} ${date} => ${message}`;
-        await fs.appendFile(path.join(process.cwd(), "logs.txt"), logMessage);
+        const logMessage = `${category} ${date} => ${message}\n`;
+        await fs.appendFile(path.join(process.cwd(), "logs.js"), logMessage);
         return true;
     } catch(e) {
         return false;
@@ -18,12 +18,13 @@ async function getWazowski() {
 }
 
 async function getLogFile() {
-    // const filePath = path.join(process.cwd(), "logs.txt");
-    return await fs.readdir(process.cwd());
+    const filePath = path.join(process.cwd(), "logs.js");
+    return await fs.readFile(filePath, {encoding: "utf-8"});
 }
 
-// (async function() {
-//     console.log(await getLogFile());
-// })();
+(async function() {
+    await log("hello");
+    console.log(await getLogFile());
+})();
 
 module.exports = {log, getWazowski, getLogFile};
