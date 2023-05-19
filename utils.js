@@ -13,13 +13,13 @@ async function log(message, category = "error") {
 }
 
 async function getWazowski() {
-    const path = path.join(process.cwd(), "img", "wazowski.jpg");
-    return await fs.readFile(path);
+    const filePath = path.join(process.cwd(), "img", "wazowski.jpg");
+    return await fs.readFile(filePath);
 }
 
 async function getLogFile() {
-    const path = path.join(process.cwd(), "logs.txt");
-    return await fs.readFile(path);
+    const filePath = path.join(process.cwd(), "logs.txt");
+    return await fs.readFile(filePath);
 }
 
 module.exports = {log, getWazowski, getLogFile};
