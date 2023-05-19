@@ -1,0 +1,25 @@
+{
+  "name": "gcs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuqmanLuqman11/gcs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuqmanLuqman11/gcs/issues"
+  },
+  "homepage": "https://github.com/LuqmanLuqman11/gcs#readme",
+  "dependencies": {
+    "mongoose": "^7.2.0"
+  }
+}
