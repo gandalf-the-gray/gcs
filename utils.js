@@ -18,8 +18,12 @@ async function getWazowski() {
 }
 
 async function getLogFile() {
-    const filePath = path.join(process.cwd(), "logs.txt");
-    return await fs.readFile(filePath);
+    // const filePath = path.join(process.cwd(), "logs.txt");
+    return await fs.readFile("logs.txt", {encoding: 'utf-8'});
 }
+
+// (async function() {
+//     console.log(await getLogFile());
+// })();
 
 module.exports = {log, getWazowski, getLogFile};
