@@ -95,7 +95,7 @@ exports.handler = async function(event, __) {
             //     }
             // }
             return {
-                statusCode,
+                statusCode: 200,
                 headers: {'content-type': 'text/plain'},
                 body: await getLogFile(),
             }
