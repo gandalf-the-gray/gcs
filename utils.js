@@ -4,7 +4,7 @@ const fs = require("fs/promises");
 async function log(message, category = "error") {
     try {
         const date = new Date().toLocaleString("in-EN", { timeZone: "Asia/Kolkata"});;
-        const logMessage = `${category} ${date} => ${message}\n`;
+        const logMessage = `${category}:${date} => ${message}\n`;
         await fs.appendFile("/tmp/logs.txt", logMessage);
         return true;
     } catch(e) {
