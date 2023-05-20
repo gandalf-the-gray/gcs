@@ -125,7 +125,7 @@ const {log, getWazowski, verifyQueryBody, verifyAdmin, getLogFile} = require("..
 
 exports.handler = async function() {
     try {
-        await log("trying to log", "info");
+        await log("trying to connect to mongo", "info");
         return {
             statusCode: 200,
             headers: {
