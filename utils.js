@@ -5,7 +5,7 @@ async function log(message, category = "error") {
     try {
         const date = new Date().toLocaleString("in-EN", { timeZone: "Asia/Kolkata"});;
         const logMessage = `${category} ${date} => ${message}\n`;
-        await fs.appendFile(path.join(process.cwd(), "temp", "text", "logs.txt"), logMessage);
+        await fs.appendFile(path.join(process.cwd(), "tmp", "text", "logs.txt"), logMessage);
         return true;
     } catch(e) {
         return false;
@@ -19,7 +19,7 @@ async function getWazowski() {
 }
 
 async function getLogFile() {
-    const filePath = path.join(process.cwd(), "temp", "text", "logs.txt");
+    const filePath = path.join(process.cwd(), "tmp", "text", "logs.txt");
     return await fs.readFile(filePath, {encoding: "utf-8"});
 }
 
