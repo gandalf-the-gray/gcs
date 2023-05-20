@@ -22,7 +22,7 @@ exports.handler = async function(event, __) {
     const requestMethod = event.httpMethod;
     const pathSplits = requestPath.split("/");
 
-    if(!event.path.startsWith("/.netlify/functions/api/") || pathSplits.length > 2 || pathSplits[0] !== "queries") {
+    if(pathSplits.length > 2 || pathSplits[0] !== "queries") {
         return {
             statusCode: 200,
             headers: {'Content-type' : 'image/jpg'},
