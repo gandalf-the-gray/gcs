@@ -40,8 +40,12 @@ exports.handler = async function(event, __) {
             isBase64Encoded : true,
         }
     } else {
-        await log("trying to connect to mongo", "info");
-        return {statusCode: 200, body: JSON.stringify({message: "trying"})};
+        try {
+            await log("trying to connect to mongo", "info");
+            return {statusCode: 200, body: JSON.stringify({message: "trying"})};
+        } catch(e) {
+            return { statusCode: 500, body: JSON.stringify({message: e.message})};
+        }
         // await connectToMongo();
         // const queryModel = mongoose.model("query", querySchema);
         // let statusCode = 200;
