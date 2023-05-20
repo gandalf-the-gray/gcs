@@ -3,18 +3,9 @@ const {log, getWazowski, verifyQueryBody, verifyAdmin, getLogFile} = require("..
 
 async function connectToMongo() {
     await log("trying to connect to mongob", "info");
-    while(true) {
-        try{
-            const username = process.env.MONGO_DB_USERNAME;
-            const password = process.env.MONGO_DB_PASSWORD;
-            await mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.z2qmspp.mongodb.net/`);
-            await log("connected to mongo", "info");
-            break;
-        } catch(e) {
-            await log(e.message);
-            await new Promise((res, _) => setTimeout(res, 1000));
-        }
-    }
+    const username = process.env.MONGO_DB_USERNAME;
+    const password = process.env.MONGO_DB_PASSWORD;
+    await mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.z2qmspp.mongodb.net/`);
 }
 
 // Query model
