@@ -682,7 +682,7 @@
           method: "POST",
           body: JSON.stringify({})
         });
-        response = response.json();
+        response = await response.json();
         console.log(response);
       } catch(e) {
         feedback.innerText = "Something went wrong, please try again later, or try calling us";
