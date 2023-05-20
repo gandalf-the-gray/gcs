@@ -34,13 +34,13 @@ function verifyAdmin(event) {
 
 function verifyQueryBody(body) {
     if(body.name && body.phoneNo && body.message) {
-        if(body.phoneNo.length === 10) {
+        if(body.phoneNo >= (10 ** 9)) {
             return null;
         } else {
-            return "Phone number should have exactly 10 digits";
+            return "Contact number should have exactly 10 digits";
         }
     } else {
-        return "Name, message and phone number are required";
+        return "Name, message and contact number are required";
     }
 }
 
