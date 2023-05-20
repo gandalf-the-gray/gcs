@@ -44,8 +44,9 @@ exports.handler = async function(event, __) {
                         statusCode = 422;
                         body = {message: errorMessage};
                     } else {
-                        body = await QueryModel.create({name: reqBody.name, message: reqBody.message, phoneNo: reqBody.phoneNo, email: reqBody.email});
+                        await QueryModel.create({name: reqBody.name, message: reqBody.message, phoneNo: reqBody.phoneNo, email: reqBody.email});
                         statusCode = 201;
+                        body = reqBody;
                     }
                 } else if (requestMethod === "DELETE") {
                     const errorMessage = verifyAdmin(event);
