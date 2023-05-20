@@ -676,21 +676,21 @@
       const button = document.getElementById("send-button");
       const feedback = document.getElementById("feedback");
       try {
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const phoneNo = document.getElementById("phoneNo").value;
-        const message = document.getElementById("message").value;
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const phoneNo = document.getElementById("phoneNo");
+        const message = document.getElementById("message");
         spinner.classList.remove("d-none");
         button.classList.add("d-none");
         const response = await fetch("/.netlify/functions/api/queries", {
           method: "POST",
-          body: JSON.stringify({name, email, phoneNo, message})
+          body: JSON.stringify({name: name.value, email: email.value, phoneNo: phoneNo.value, message: message.value,})
         });
         const json = await response.json();
         feedback.classList.remove("d-none");
         if(response.ok) {        
           feedback.classList.add("alert-success");
-          feedback.innerText = "Your message has been sent, we'll reach out to you ASAP!"
+          feedback.innerText = "Your message has been sent, we will reach out to you ASAP!"
         } else {
           feedback.classList.add("alert-danger");
           feedback.innerText = json.message;
