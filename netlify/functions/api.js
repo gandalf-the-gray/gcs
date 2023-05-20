@@ -30,6 +30,7 @@ exports.handler = async function(event, __) {
         }
     } else {
         try{
+            console.log(hello);
             await connectToMongo();
             const queryModel = mongoose.model("query", querySchema);
             let statusCode = 200;
@@ -98,9 +99,10 @@ exports.handler = async function(event, __) {
                 body: JSON.stringify(body),
             }
         } catch(e) {
+            await log(e.message);
             return {
                 statusCode: 500,
-                body: JSON.stringify({message: e.message})
+                body: JSON.stringify({message: "sum ting wen wong"})
             }
         }
     }
