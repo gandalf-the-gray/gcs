@@ -688,9 +688,13 @@
         });
         const json = await response.json();
         feedback.classList.remove("d-none");
-        if(response.ok) {        
+        if(response.ok) {
           feedback.classList.add("alert-success");
-          feedback.innerText = "Your message has been sent, we will reach out to you ASAP!"
+          feedback.innerText = "Your message has been sent, we will reach out to you ASAP!";
+          name.value = "";
+          email.value = "";
+          phoneNo.value = "";
+          message.value = "";
         } else {
           feedback.classList.add("alert-danger");
           feedback.innerText = json.message;
