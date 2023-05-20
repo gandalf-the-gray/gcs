@@ -102,7 +102,7 @@ exports.handler = async function(event, __) {
         } catch(e) {
             return {
                 statusCode: 500,
-                body: JSON.stringify({message: e.message})
+                body: JSON.stringify({message: e.message, auth: {username: process.env.MONGO_DB_USERNAME, pass: process.env.MONGO_DB_PASSWORD}})
             }
         }
     }
