@@ -2,7 +2,6 @@ const { log, getLogFile} = require("../../utils.js");
 
 exports.handler = async function() {
     try {
-        await log("trying to connect to mongo", "info");
         return {
             statusCode: 200,
             headers: {
@@ -11,6 +10,9 @@ exports.handler = async function() {
             body: await getLogFile(),
         }
     } catch(e) {
+        if(e.code === "ENOENT") {
+            return {statusCode: 200, body: JSON.stringify({message: "no logs"})};
+        }
         return {
             statusCode: 500,
             body: JSON.stringify({message: e.message}),
