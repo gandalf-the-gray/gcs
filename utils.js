@@ -25,7 +25,11 @@ async function getLogFile() {
 
 // Validations functions
 function verifyAdmin(event) {
-    return event.headers.authorization && event.headers.authorization === process.env.ADMIN_PASSWORD ? null : false;
+    if(event.headers.authorization && event.headers.authorization === process.env.ADMIN_PASSWORD) {
+        return null;
+    } else {
+        return "Unauthorized access";
+    }
 }
 
 function verifyQueryBody(body) {
