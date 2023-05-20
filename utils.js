@@ -23,4 +23,4 @@ async function getLogFile() {
 }
 
 
-module.exports = {log, getWazowski, getLogFile, getFiles};
+module.exports = {log, getWazowski, getLogFile};
