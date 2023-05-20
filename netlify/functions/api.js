@@ -41,8 +41,10 @@ exports.handler = async function(event, __) {
         }
     } else {
         try {
+            let message = "trying to log."
             await log("trying to connect to mongo", "info");
-            return {statusCode: 200, body: JSON.stringify({message: "trying"})};
+            message += " tried.";
+            return {statusCode: 200, body: JSON.stringify({message})};
         } catch(e) {
             return { statusCode: 500, body: JSON.stringify({message: e.message})};
         }
