@@ -22,7 +22,7 @@ exports.handler = async function(event, __) {
     const requestMethod = event.httpMethod;
     const pathSplits = requestPath.split("/");
 
-    if(pathSplits.length > 2 || (pathSplits[0] !== "queries" && pathSplits[0] !== "query")) {
+    if(pathSplits.length > 2 || pathSplits[0] !== "queries") {
         return {
             statusCode: 200,
             headers: {'Content-type' : 'image/jpg'},
@@ -34,7 +34,7 @@ exports.handler = async function(event, __) {
             await connectToMongo();
             let statusCode = 200;
             let body = {};
-            if(pathSplits[0] === "queries") {
+            if(pathSplits.length === 1) {
                 if(requestMethod === "GET") {
                     body = await QueryModel.find({});
                 } else if(requestMethod === "POST") {
