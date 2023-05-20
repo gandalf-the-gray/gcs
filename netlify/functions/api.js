@@ -13,6 +13,7 @@ const querySchema = {
     phoneNo: {type: String, required: true},
     email: {type: String},
 }
+const QueryModel = mongoose.model("query", querySchema);
 
 // Query model ends
 
@@ -31,12 +32,11 @@ exports.handler = async function(event, __) {
     } else {
         try{
             await connectToMongo();
-            const queryModel = mongoose.model("query", querySchema);
             let statusCode = 200;
             let body = {};
             if(pathSplits[0] === "queries") {
                 if(requestMethod === "GET") {
-                    body = await queryModel.find({});
+                    body = await QueryModel.find({});
                 } else if(requestMethod === "POST") {
                     const reqBody = JSON.parse(event.body);
                     const errorMessage = verifyQueryBody(reqBody);
@@ -44,8 +44,8 @@ exports.handler = async function(event, __) {
                         statusCode = 422;
                         body = {message: errorMessage};
                     } else {
+                        body = await QueryModel.create({name: reqBody.name, message: reqBody.message, phoneNo: reqBody.phoneNo, email: reqBody.email});
                         statusCode = 201;
-                        body = await queryModel.create({name: reqBody.name, message: reqBody.message, phoneNo: reqBody.phoneNo, email: reqBody.email});
                     }
                 } else if (requestMethod === "DELETE") {
                     const errorMessage = verifyAdmin(event);
@@ -53,7 +53,7 @@ exports.handler = async function(event, __) {
                         statusCode = 401;
                         body = {message: errorMessage};
                     } else {
-                        await queryModel.delete({});
+                        await QueryModel.delete({});
                         statusCode = 204;
                     }
                 } else {
@@ -67,8 +67,8 @@ exports.handler = async function(event, __) {
                     body = {message: "Query ID is required"};
                 } else {
                     if(requestMethod === "GET") {
-                        body = await queryModel.find({_id: queryId});
-                    } else if(!await queryModel.exists({_id: queryId})) {
+                        body = await QueryModel.find({_id: queryId});
+                    } else if(!await QueryModel.exists({_id: queryId})) {
                         statusCode = 400;
                         body = {message: "Query doesn't exist"};
                     } else if(requestMethod === "PUT") {
@@ -78,7 +78,7 @@ exports.handler = async function(event, __) {
                             statusCode = 422;
                             body = {message: errorMessage};
                         } else {
-                            body = await queryModel.findOneAndUpdate({_id: queryId}, {$set: {name: reqBody.name, message: reqBody.message, phoneNo: reqBody.phoneNo, email: reqBody.email}}, {new: true});
+                            body = await QueryModel.findOneAndUpdate({_id: queryId}, {$set: {name: reqBody.name, message: reqBody.message, phoneNo: reqBody.phoneNo, email: reqBody.email}}, {new: true});
                         }
                     } else if(requestMethod === "DELETE") {
                         const errorMessage = verifyAdmin(event);
@@ -86,7 +86,7 @@ exports.handler = async function(event, __) {
                             statusCode = 401;
                             body = {message: errorMessage};
                         } else {
-                            await queryModel.deleteOne({_id: queryId});
+                            await QueryModel.deleteOne({_id: queryId});
                         }
                     } else {
                         statusCode = 400;
