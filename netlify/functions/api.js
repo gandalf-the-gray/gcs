@@ -3,7 +3,7 @@ const {log, getWazowski, verifyQueryBody, verifyAdmin, getLogFile} = require("..
 
 async function connectToMongo() {
     await log("trying to connect to mongob", "info");
-    await mongoose.connect(`mongodb+srv://nitesh:Mayday$9501@cluster0.z2qmspp.mongodb.net/`);
+    await mongoose.connect(`mongodb+srv://nitesh:ilSX2zLf1MDNM8pS@cluster0.z2qmspp.mongodb.net/`);
 }
 
 // Query model
