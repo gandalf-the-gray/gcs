@@ -54,7 +54,7 @@ exports.handler = async function(event, __) {
                         statusCode = 401;
                         body = {message: errorMessage};
                     } else {
-                        await QueryModel.delete({});
+                        await QueryModel.deleteMany({});
                         statusCode = 204;
                     }
                 } else {
