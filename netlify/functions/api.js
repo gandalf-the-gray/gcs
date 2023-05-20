@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {log, getWazowski, verifyQueryBody, verifyAdmin, getLogFile} = require("../../utils.js");
+const {log, getWazowski, verifyQueryBody, verifyAdmin} = require("../../utils.js");
 
 async function connectToMongo() {
     await mongoose.connect(`mongodb+srv://nitesh:ilSX2zLf1MDNM8pS@cluster0.z2qmspp.mongodb.net/`);
@@ -30,7 +30,7 @@ exports.handler = async function(event, __) {
         }
     } else {
         try{
-            console.log(hello);
+            await log("hello");
             await connectToMongo();
             const queryModel = mongoose.model("query", querySchema);
             let statusCode = 200;
@@ -99,7 +99,6 @@ exports.handler = async function(event, __) {
                 body: JSON.stringify(body),
             }
         } catch(e) {
-            await log(e.message);
             return {
                 statusCode: 500,
                 body: JSON.stringify({message: "sum ting wen wong"})
