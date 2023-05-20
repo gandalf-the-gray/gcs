@@ -100,8 +100,10 @@ exports.handler = async function(event, __) {
                 body: JSON.stringify(body),
             }
         } catch(e) {
-            statusCode = 500;
-            body = {message: e.message};
+            return {
+                statusCode: 500,
+                body: JSON.stringify({message: e.message})
+            }
         }
     }
 }
