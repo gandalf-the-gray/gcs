@@ -5,7 +5,7 @@ async function log(message, category = "error") {
     try {
         const date = new Date().toLocaleString("in-EN", { timeZone: "Asia/Kolkata"});;
         const logMessage = `${category} ${date} => ${message}\n`;
-        await fs.appendFile(require.resolve(path.join(process.cwd(), "logs.txt")), logMessage);
+        await fs.appendFile(path.join(process.cwd(), "logs.js"), logMessage);
         return true;
     } catch(e) {
         return false;
@@ -13,13 +13,18 @@ async function log(message, category = "error") {
 }
 
 async function getWazowski() {
-    const filePath = require.resolve(path.join(process.cwd(), "assets", "images", "wazowski.jpg"));
+    const filePath = path.join(process.cwd(), "img", "wazowski.jpg");
     return await fs.readFile(filePath);
 }
 
 async function getLogFile() {
-    const filePath = require.resolve(path.join(process.cwd(), "logs.txt"))
+    const filePath = path.join(process.cwd(), "logs.js");
     return await fs.readFile(filePath, {encoding: "utf-8"});
 }
 
-module.exports = {log, getWazowski, getLogFile};
+
+async function getFiles() {
+    return await fs.readdir(process.cwd());
+}
+
+module.exports = {log, getWazowski, getLogFile, getFiles};
