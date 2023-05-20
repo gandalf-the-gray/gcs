@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const {log, getWazowski, verifyQueryBody, verifyAdmin} = require("../../utils.js");
 
-(async function() {
+async function connectToMongo() {
     log("trying to connect to mongob", "info");
     while(true) {
         try{
@@ -15,7 +15,7 @@ const {log, getWazowski, verifyQueryBody, verifyAdmin} = require("../../utils.js
             await new Promise((res, _) => setTimeout(res, 1000));
         }
     }
-})();
+}
 
 // Query model
 const querySchema = {
@@ -41,6 +41,7 @@ exports.handler = async function(event, __) {
             isBase64Encoded : true,
         }
     } else {
+        await connectToMongo();
         let statusCode = 200;
         let body = {};
         try{
@@ -109,6 +110,7 @@ exports.handler = async function(event, __) {
             }
         } catch(e) {
             statusCode = 500;
+            body = {message: e.message};
         }
     }
 }
