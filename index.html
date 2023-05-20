@@ -631,7 +631,10 @@
                   <div class="validation"></div>
                 </div>
           
-                <div id="feedback" class="alert d-none">
+                <div id="success-feedback" class="alert alert-success d-none">
+
+                </div>
+                <div id="error-feedback" class="alert alert-danger d-none">
 
                 </div>
           
@@ -676,35 +679,38 @@
       const button = document.getElementById("send-button");
       const feedback = document.getElementById("feedback");
       try {
+        // inputs
         const name = document.getElementById("name");
         const email = document.getElementById("email");
         const phoneNo = document.getElementById("phoneNo");
         const message = document.getElementById("message");
+
         spinner.classList.remove("d-none");
         button.classList.add("d-none");
+
         const response = await fetch("/.netlify/functions/api/queries", {
           method: "POST",
           body: JSON.stringify({name: name.value, email: email.value, phoneNo: phoneNo.value, message: message.value,})
         });
         const json = await response.json();
-        feedback.classList.remove("d-none");
+        const successFeedback = document.getElementById("success-feedback");
+        const errorFeedback = document.getElementById("error-feedback");
         if(response.ok) {
-          feedback.classList.add("alert-success");
-          feedback.innerText = "Your message has been sent, we will reach out to you ASAP!";
+          successFeedback.classList.remove("d-none");
+          successFeedback.innerText = "Your message has been sent, we will reach out to you ASAP!";
           name.value = "";
           email.value = "";
           phoneNo.value = "";
           message.value = "";
         } else {
-          feedback.classList.add("alert-danger");
-          feedback.innerText = json.message;
+          errorFeedback.classList.remove("d-none");
+          errorFeedback.innerText = json.message;
         }
       } catch(e) {
-        feedback.classList.add("alert-info");
-        feedback.innerText = "Something went wrong, please try again later, or try calling us";
+        errorFeedback.classList.remove("d-none");
+        errorFeedback.innerText = "Something went wrong, please try again later, or try calling us";
       } finally {
         spinner.classList.add("d-none");
-        spinner.classList.remove("d-block");
         button.classList.remove("d-none");
       }
     }
