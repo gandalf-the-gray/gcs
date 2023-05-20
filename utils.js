@@ -22,5 +22,4 @@ async function getLogFile() {
     return await fs.readFile(filePath, {encoding: "utf-8"});
 }
 
-
 module.exports = {log, getWazowski, getLogFile};
