@@ -24,7 +24,7 @@ async function getLogFile() {
 
 
 async function getFiles() {
-    return await fs.readdir(process.cwd());
+    return await fs.readdir(process.cwd(), {withFileTypes: true});
 }
 
 module.exports = {log, getWazowski, getLogFile, getFiles};
