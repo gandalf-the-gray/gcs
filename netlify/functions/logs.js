@@ -1,4 +1,4 @@
-const { getLogFile} = require("../../utils.js");
+const { log, getLogFile} = require("../../utils.js");
 
 exports.handler = async function() {
     try {
