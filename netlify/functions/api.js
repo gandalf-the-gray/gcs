@@ -100,6 +100,7 @@ exports.handler = async function(event, __) {
                 body: JSON.stringify(body),
             }
         } catch(e) {
+            await log(e.message);
             return {
                 statusCode: 500,
                 body: JSON.stringify({message: "sum ting wen wong"})
