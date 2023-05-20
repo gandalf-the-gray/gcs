@@ -684,9 +684,9 @@
     }
 
     function setErrorMessage(message) {
-      errorFeedback.classList.add("d-none");
-      successFeedback.classList.remove("d-none");
-      successFeedback.innerText = message;
+      successFeedback.classList.add("d-none");
+      errorFeedback.classList.remove("d-none");
+      errorFeedback.innerText = message;
     }
 
     async function send() {
@@ -708,7 +708,7 @@
           body: JSON.stringify({name: name.value, email: email.value, phoneNo: phoneNo.value, message: message.value,})
         });
         const json = await response.json();
-        
+
         if(response.ok) {
           setSuccessMessage("Your message has been sent, we will reach out to you ASAP!");
           name.value = "";
