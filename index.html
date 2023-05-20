@@ -619,7 +619,7 @@
                   <div class="validation"></div>
                 </div>
                 <div class="form-group">
-                  <input id="message" placeholder="Your Message" class="form-control" />
+                  <input id="email" placeholder="Your Email" class="form-control" />
                   <div class="validation"></div>
                 </div>
                 <div class="form-group">
@@ -676,11 +676,15 @@
       const button = document.getElementById("send-button");
       const feedback = document.getElementById("feedback");
       try {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const phoneNo = document.getElementById("phoneNo").value;
+        const message = document.getElementById("message").value;
         spinner.classList.remove("d-none");
         button.classList.add("d-none");
         const response = await fetch("/.netlify/functions/api/queries", {
           method: "POST",
-          body: JSON.stringify({})
+          body: JSON.stringify({name, email, phoneNo, message})
         });
         const json = await response.json();
         feedback.classList.remove("d-none");
