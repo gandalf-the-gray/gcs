@@ -40,11 +40,11 @@ exports.handler = async function(event, __) {
             isBase64Encoded : true,
         }
     } else {
-        await connectToMongo();
-        const queryModel = mongoose.model("query", querySchema);
-        let statusCode = 200;
-        let body = {};
         try{
+            await connectToMongo();
+            const queryModel = mongoose.model("query", querySchema);
+            let statusCode = 200;
+            let body = {};
             if(pathSplits[0] === "queries") {
                 if(requestMethod === "GET") {
                     body = await queryModel.find({});
