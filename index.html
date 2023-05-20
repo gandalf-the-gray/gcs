@@ -678,12 +678,18 @@
       try {
         spinner.classList.remove("d-none");
         button.classList.add("d-none");
-        let response = await fetch("/.netlify/functions/api/queries", {
+        const response = await fetch("/.netlify/functions/api/queries", {
           method: "POST",
           body: JSON.stringify({})
         });
-        response = await response.json();
-        console.log(response);
+        const json = await response.json();
+        if(response.ok) {
+          feedback.classList.add("alert-success");
+          feedback.classList.remove("d-none");
+          feedback.innerText = "Your message has been sent, we'll reach out to you ASAP!"
+        } else {
+          feedback.innerText = json.message;
+        }
       } catch(e) {
         feedback.innerText = "Something went wrong, please try again later, or try calling us";
       } finally {

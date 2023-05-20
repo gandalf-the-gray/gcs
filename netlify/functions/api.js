@@ -109,7 +109,7 @@ exports.handler = async function(event, __) {
             await log(e.message);
             return {
                 statusCode: 500,
-                body: JSON.stringify({message: "sum ting wen wong"})
+                body: JSON.stringify({message: "Something went wrong, please try again later"})
             }
         }
     }
