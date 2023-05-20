@@ -22,7 +22,7 @@ exports.handler = async function(event, __) {
     const requestMethod = event.httpMethod;
     const pathSplits = requestPath ? requestPath.split("/") : null;
 
-    if(pathSplits && ppathSplits.length > 2 || pathSplits[0] !== "queries") {
+    if(!pathSplits || pathSplits.length > 2 || pathSplits[0] !== "queries") {
         return {
             statusCode: 200,
             headers: {'Content-type' : 'image/jpg'},
