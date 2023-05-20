@@ -696,6 +696,7 @@
           feedback.innerText = json.message;
         }
       } catch(e) {
+        feedback.classList.add("alert-info");
         feedback.innerText = "Something went wrong, please try again later, or try calling us";
       } finally {
         spinner.classList.add("d-none");
