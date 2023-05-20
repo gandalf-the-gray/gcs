@@ -674,41 +674,52 @@
 
   <!-- event handlers -->
   <script>
+    const successFeedback = document.getElementById("success-feedback");
+    const errorFeedback = document.getElementById("error-feedback");
+
+    function setSuccessMessage(message) {
+      errorFeedback.classList.add("d-none");
+      successFeedback.classList.remove("d-none");
+      successFeedback.innerText = message;
+    }
+
+    function setErrorMessage(message) {
+      errorFeedback.classList.add("d-none");
+      successFeedback.classList.remove("d-none");
+      successFeedback.innerText = message;
+    }
+
     async function send() {
       const spinner = document.getElementById("send-spinner");
       const button = document.getElementById("send-button");
       const feedback = document.getElementById("feedback");
       try {
+        spinner.classList.remove("d-none");
+        button.classList.add("d-none");
+
         // inputs
         const name = document.getElementById("name");
         const email = document.getElementById("email");
         const phoneNo = document.getElementById("phoneNo");
         const message = document.getElementById("message");
 
-        spinner.classList.remove("d-none");
-        button.classList.add("d-none");
-
         const response = await fetch("/.netlify/functions/api/queries", {
           method: "POST",
           body: JSON.stringify({name: name.value, email: email.value, phoneNo: phoneNo.value, message: message.value,})
         });
         const json = await response.json();
-        const successFeedback = document.getElementById("success-feedback");
-        const errorFeedback = document.getElementById("error-feedback");
+        
         if(response.ok) {
-          successFeedback.classList.remove("d-none");
-          successFeedback.innerText = "Your message has been sent, we will reach out to you ASAP!";
+          setSuccessMessage("Your message has been sent, we will reach out to you ASAP!");
           name.value = "";
           email.value = "";
           phoneNo.value = "";
           message.value = "";
         } else {
-          errorFeedback.classList.remove("d-none");
-          errorFeedback.innerText = json.message;
+          setErrorMessage(e.message);
         }
       } catch(e) {
-        errorFeedback.classList.remove("d-none");
-        errorFeedback.innerText = "Something went wrong, please try again later, or try calling us";
+        setErrorMessage("Something went wrong, please try again later, or try calling us");
       } finally {
         spinner.classList.add("d-none");
         button.classList.remove("d-none");
