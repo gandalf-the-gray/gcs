@@ -41,6 +41,7 @@ exports.handler = async function(event, __) {
                     const reqBody = JSON.parse(event.body);
                     const errorMessage = verifyQueryBody(reqBody);
                     if(errorMessage !== null) {
+                        statusCode = 422;
                         body = {message: errorMessage};
                     } else {
                         statusCode = 201;
