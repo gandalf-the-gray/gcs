@@ -683,9 +683,9 @@
           body: JSON.stringify({})
         });
         const json = await response.json();
+        feedback.classList.add("alert-success");
+        feedback.classList.remove("d-none");
         if(response.ok) {
-          feedback.classList.add("alert-success");
-          feedback.classList.remove("d-none");
           feedback.innerText = "Your message has been sent, we'll reach out to you ASAP!"
         } else {
           feedback.innerText = json.message;
