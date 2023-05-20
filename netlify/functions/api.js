@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const {log, getWazowski, verifyQueryBody, verifyAdmin} = require("../../utils.js");
 
 async function connectToMongo() {
-    log("trying to connect to mongob", "info");
+    await log("trying to connect to mongob", "info");
     while(true) {
         try{
             const username = process.env.MONGO_DB_USERNAME;
