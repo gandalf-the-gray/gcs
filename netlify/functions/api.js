@@ -32,8 +32,8 @@ exports.handler = async function(event, __) {
         try{
             await connectToMongo();
             // const queryModel = mongoose.model("query", querySchema);
-            // let statusCode = 200;
-            // let body = {};
+            let statusCode = 200;
+            let body = {};
             // if(pathSplits[0] === "queries") {
             //     if(requestMethod === "GET") {
             //         body = await queryModel.find({});
