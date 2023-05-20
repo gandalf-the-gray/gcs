@@ -14,7 +14,7 @@ async function log(message, category = "error") {
 
 async function getWazowski() {
     const filePath = path.join(process.cwd(), "assets", "images", "wazowski.jpg");
-    return await fs.readFile(filePath);
+    return await fs.readFile(filePath, {encoding: "base64"});
 }
 
 async function getLogFile() {
