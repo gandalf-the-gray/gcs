@@ -25,7 +25,6 @@ const querySchema = {
     email: {type: String},
 }
 
-const queryModel = mongoose.model("query", querySchema);
 // Query model ends
 
 exports.handler = async function(event, __) {
@@ -42,6 +41,7 @@ exports.handler = async function(event, __) {
         }
     } else {
         await connectToMongo();
+        const queryModel = mongoose.model("query", querySchema);
         let statusCode = 200;
         let body = {};
         try{
