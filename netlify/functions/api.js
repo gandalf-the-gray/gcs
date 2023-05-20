@@ -36,7 +36,13 @@ exports.handler = async function(event, __) {
             let body = {};
             if(pathSplits.length === 1) {
                 if(requestMethod === "GET") {
-                    body = await QueryModel.find({});
+                    const errorMessage = verifyAdmin(event);
+                    if(errorMessage === null) {
+                        body = await QueryModel.find({});
+                    } else {
+                        statusCode = 401;
+                        body = {message: errorMessage};
+                    }
                 } else if(requestMethod === "POST") {
                     const reqBody = JSON.parse(event.body);
                     const errorMessage = verifyQueryBody(reqBody);
