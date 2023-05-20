@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const {log, getWazowski, verifyQueryBody, verifyAdmin} = require("../../utils.js");
 
 async function connectToMongo() {
-    await mongoose.connect(`mongodb+srv://nitesh:ilSX2zLf1MDNM8pS@cluster0.z2qmspp.mongodb.net/`);
+    await mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@cluster0.z2qmspp.mongodb.net/`);
     await log("connected to mongo", "info");
 }
 
