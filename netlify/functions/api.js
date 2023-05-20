@@ -3,9 +3,7 @@ const {log, getWazowski, verifyQueryBody, verifyAdmin, getLogFile} = require("..
 
 async function connectToMongo() {
     await log("trying to connect to mongob", "info");
-    const username = process.env.MONGO_DB_USERNAME;
-    const password = process.env.MONGO_DB_PASSWORD;
-    await mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.z2qmspp.mongodb.net/`);
+    await mongoose.connect(`mongodb+srv://nitesh:Mayday$9501@cluster0.z2qmspp.mongodb.net/`);
 }
 
 // Query model
@@ -107,4 +105,3 @@ exports.handler = async function(event, __) {
         }
     }
 }
-
